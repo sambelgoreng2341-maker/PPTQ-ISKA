@@ -1,0 +1,6 @@
+{
+  "name": "IQBS Sukoharjo - Iska Qur'anic Boarding School",
+  "description": "Website resmi ISKA Qur'anic Boarding School (IQBS) Sukoharjo. Penerimaan Santri Baru (PSB Online), informasi kurikulum terpadu mulazamah & formal, galeri aktivitas santri, dan rincian pembiayaan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

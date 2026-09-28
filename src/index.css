@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #292524;
+    background-color: #fbfbfa;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+    letter-spacing: -0.015em;
+  }
+
+  .font-trajan {
+    font-family: 'Trajan Pro', 'Trajan Pro 3', 'Trajan', 'Cinzel', 'Playfair Display', Georgia, serif;
+    letter-spacing: 0.08em;
+  }
+
+  .font-ondine {
+    font-family: 'Ondine LT Std', 'Ondine', 'Almendra', 'Cinzel Decorative', cursive, serif;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* Hero Entrance Animations - Ultra-Slow, Elegant Side Drift with 1s Cadence */
+@keyframes heroFadeSide {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+/* Hero Exit Animations - Elegant Smooth Dissolve (Tulisan Menghilang Halus & Elegan) */
+@keyframes heroFadeSideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px);
+    filter: blur(5px);
+  }
+}
+
+.animate-hero-exit {
+  animation: heroFadeSideOut 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+
+@keyframes heroSoftFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Text 1: Sub-headline / Badge (starts 1.0s after slide transition, duration 1.25s) */
+.animate-hero-badge {
+  animation: heroFadeSide 1.25s cubic-bezier(0.16, 1, 0.3, 1) 1.0s both;
+}
+
+/* Text 2: Main Headline Title (starts 2.0s, duration 1.25s) */
+.animate-hero-title {
+  animation: heroFadeSide 1.25s cubic-bezier(0.16, 1, 0.3, 1) 2.0s both;
+}
+
+/* Text 3: Subtitle / Description (starts 3.0s, duration 1.25s) */
+.animate-hero-desc {
+  animation: heroFadeSide 1.25s cubic-bezier(0.16, 1, 0.3, 1) 3.0s both;
+}
+
+/* Text 4: Button "Selengkapnya" (starts 4.0s, duration 1.25s) */
+.animate-hero-actions {
+  animation: heroFadeSide 1.25s cubic-bezier(0.16, 1, 0.3, 1) 4.0s both;
+}
+
+/* Text 5: Optional Meta (starts 5.0s, duration 1.25s) */
+.animate-hero-meta {
+  animation: heroFadeSide 1.25s cubic-bezier(0.16, 1, 0.3, 1) 5.0s both;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1ee;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
