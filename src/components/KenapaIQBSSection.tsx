@@ -124,7 +124,7 @@ export const KenapaIQBSSection: React.FC<KenapaIQBSSectionProps> = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-300/80 group bg-stone-950">
               <div className="aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden">
                 <img
-                  src="/src/assets/images/iqbs_campus_exterior_1790514275417.jpg"
+                  src="/images/iqbs_campus_exterior_1790514275417.jpg"
                   alt="Kompleks Kampus PPTQ ISKA Sukoharjo"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
