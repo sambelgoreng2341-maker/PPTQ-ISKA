@@ -6,6 +6,7 @@ export interface SlideItem {
   subtitle: string;
   activityTime: string;
   featurePill: string;
+  objectPosition?: string;
 }
 
 export interface ProgramItem {
@@ -78,6 +79,7 @@ export const HERO_SLIDES: SlideItem[] = [
     subtitle: "Membimbing santri menghafal 30 Juz secara mutqin dengan talaqqi tajwid bersanad Tuhfatul Athfal & Al-Jazariyah bersama asatidz berkompeten.",
     activityTime: "04.30 - 06.30 WIB & 18.30 - 20.00 WIB",
     featurePill: "Halaqah Intensif Masjid Raya ISKA",
+    objectPosition: 'center 45%',
   },
   {
     id: 'slide-2',
@@ -87,6 +89,7 @@ export const HERO_SLIDES: SlideItem[] = [
     subtitle: "Suasana belajar yang asri dan tenang di Sukoharjo, didesain khusus agar santri betah, fokus mendalami ilmu agama dan teknologi modern.",
     activityTime: "24 Jam Lingkungan Terintegrasi",
     featurePill: "Kompleks PPTQ ISKA Mayang",
+    objectPosition: 'center 38%',
   },
   {
     id: 'slide-3',
@@ -96,6 +99,7 @@ export const HERO_SLIDES: SlideItem[] = [
     subtitle: "Pembinaan fisik berimbang lewat bela diri pencak silat, memanah, renang, dan olahraga tim untuk membangun mental pemimpin muslim sejati.",
     activityTime: "16.00 - 17.15 WIB (Sore Hari)",
     featurePill: "Ekstrakurikuler & Olahraga Sunnah",
+    objectPosition: 'center 28%',
   },
   {
     id: 'slide-4',
@@ -105,6 +109,7 @@ export const HERO_SLIDES: SlideItem[] = [
     subtitle: "Membiasakan adab makan, kedisiplinan hidup mandiri, serta pengawasan intensif 24 jam oleh musyrif kamar yang berdedikasi.",
     activityTime: "Tiga Kali Sehari Bersama",
     featurePill: "Ruang Makan & Pendopo Asrama",
+    objectPosition: 'center 40%',
   },
   {
     id: 'slide-5',
@@ -114,6 +119,7 @@ export const HERO_SLIDES: SlideItem[] = [
     subtitle: "Kegiatan berkala outbound dan outing class di alam terbuka seperti Umbul Pelem Klaten, mempererat tali ukhuwah dan kesegaran rohani santri.",
     activityTime: "Kegiatan Semesteran Santri",
     featurePill: "Tadabbur Alam & Outing Class",
+    objectPosition: 'center 35%',
   },
 ];
 

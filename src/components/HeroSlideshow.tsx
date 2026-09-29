@@ -106,7 +106,7 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = () => {
     >
       {/* 
         Vertical height: min-h-[130vh] sm:min-h-[132vh]
-        providing an expansive, well-proportioned downward extension
+        Memberikan ruang visual yang megah, luas, dan memanjang ke bawah
       */}
       <div className="relative w-full min-h-[130vh] sm:min-h-[132vh] flex flex-col justify-between pt-24 sm:pt-32 lg:pt-36 pb-10 sm:pb-14">
         
@@ -129,7 +129,8 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = () => {
                 src={slide.image}
                 alt={slide.title}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-center"
+                style={{ objectPosition: slide.objectPosition || 'center' }}
+                className="w-full h-full object-cover"
               />
               {/* Subtle cinematic gradient overlays for high typography contrast and pristine photo clarity */}
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-stone-950/30" />
@@ -160,12 +161,14 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = () => {
 
         {/* 
           Main Editorial Stage:
+          - Posisi naik di mobile (-translate-y-8 sm:translate-y-0) dan padding samping lega (px-12 sm:px-12)
+            agar teks tidak menabrak tombol panah geser kiri-kanan
           - Teks masuk dari samping lembut dengan durasi lambat & elegan (animate-hero-*)
           - Jeda 1 detik berurutan antar baris teks
           - Teks menghilang dengan halus & elegan sebelum slide berganti (animate-hero-exit)
           - Center-aligned on mobile, left-aligned on sm+
         */}
-        <div className="relative z-20 max-w-7xl mx-auto w-full px-6 sm:px-12 lg:px-16 my-auto py-16 sm:py-24">
+        <div className="relative z-20 max-w-7xl mx-auto w-full px-12 sm:px-12 lg:px-16 my-auto -translate-y-8 sm:translate-y-0 py-8 sm:py-24">
           <div 
             className={`max-w-4xl text-center sm:text-left mx-auto sm:mx-0 flex flex-col items-center sm:items-start ${
               isExiting ? 'animate-hero-exit' : ''
@@ -181,12 +184,12 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = () => {
             </div>
 
             {/* Step 2: Main Luxury Serif Headline */}
-            <h1 className="animate-hero-title text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display text-white tracking-tight leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-6 [text-wrap:balance] drop-shadow-lg text-center sm:text-left">
+            <h1 className="animate-hero-title text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display text-white tracking-tight leading-[1.15] sm:leading-[1.1] mb-3 sm:mb-6 [text-wrap:balance] drop-shadow-lg text-center sm:text-left">
               {currentSlide.title}
             </h1>
 
             {/* Step 3: Subtitle / Description */}
-            <p className="animate-hero-desc text-stone-200 text-sm sm:text-base md:text-lg font-normal leading-relaxed mb-6 sm:mb-8 max-w-2xl text-stone-200/90 drop-shadow-sm text-center sm:text-left mx-auto sm:mx-0">
+            <p className="animate-hero-desc text-stone-200 text-xs sm:text-base md:text-lg font-normal leading-relaxed mb-5 sm:mb-8 max-w-2xl text-stone-200/90 drop-shadow-sm text-center sm:text-left mx-auto sm:mx-0">
               {currentSlide.subtitle}
             </p>
 
