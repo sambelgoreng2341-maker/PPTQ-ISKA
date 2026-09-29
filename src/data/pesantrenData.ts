@@ -552,10 +552,10 @@ export const TESTIMONIALS = [
     badge: "Mutqin 30 Juz · Pemegang Sanad Tuhfatul Athfal",
   },
   {
-    quote: "Sebagai orang tua, kami merasa tenang karena putra kami tidak hanya fokus menghafal Al-Qur'an, tapi juga mendapatkan pendidikan formal SMP dengan ijazah negara dan pengawasan 24 jam yang hangat.",
-    name: "Drs. H. Hendra Wibawa",
-    role: "Wali Santri Angkatan 2024",
-    badge: "Wali Santri Asal Solo",
+    quote: "Alhamdulillah sangat bersyukur menitipkan anak di IQBS. Perkembangan adabnya luar biasa, suasana asatidz dan santri hangat layaknya keluarga, fasilitasnya bersih, dan makanannya sangat disukai anak. Semoga kelak menjadi anak yang sukses dunia akhirat dan tangguh menghadapi tantangan zaman.",
+    name: "Budi Sumboro, S.Kom.",
+    role: "Wali Santri Angkatan 2022",
+    badge: "Wali Santri PPTQ ISKA",
   },
   {
     quote: "Kurikulum mulazamah yang dipadukan dengan kurikulum formal nasional membekali santri pengetahuan syar'i sekaligus literasi sains dan teknologi yang relevan dengan zaman.",

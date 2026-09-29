@@ -13,12 +13,21 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
+  const [isFirstMount, setIsFirstMount] = useState(true);
 
   // Touch gesture refs for mobile swipe
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
   const slideCount = HERO_SLIDES.length;
+
+  // Efek membuka lembaran halus pada saat pertama kali web dimuat / di-reload
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsFirstMount(false);
+    }, 2600);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleNext = useCallback(() => {
     setIsExiting(true);
@@ -111,6 +120,13 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = () => {
       <div className="relative w-full min-h-[130vh] sm:min-h-[132vh] flex flex-col justify-between pt-24 sm:pt-32 lg:pt-36 pb-10 sm:pb-14">
         
         {/* 
+          Efek Membuka Lembaran Halus pada First Load / Reload (Soft Sheet Unfolding)
+        */}
+        {isFirstMount && (
+          <div className="absolute inset-0 z-20 pointer-events-none animate-hero-veil bg-stone-950" />
+        )}
+
+        {/* 
           Kecepatan Transisi Fade (Memudar Lembut & Tenang): 1.800 ms
           Gambar lama perlahan menghilang (fade-out), gambar baru muncul perlahan (fade-in)
         */}
@@ -123,7 +139,7 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = () => {
                 isActive
                   ? 'opacity-100 z-10'
                   : 'opacity-0 z-0 pointer-events-none'
-              }`}
+              } ${isFirstMount && isActive ? 'animate-hero-first-load' : ''}`}
             >
               <img
                 src={slide.image}

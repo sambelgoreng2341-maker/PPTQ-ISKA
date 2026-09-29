@@ -51,8 +51,8 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
     birthCertUploaded: true,
     photoUploaded: true,
 
-    // Step 4: Bayar
-    paymentMethod: 'BSI' as 'BSI' | 'BCA' | 'TUNAI',
+    // Step 4: Bayar (kosong secara default, menunggu calon santri memilih)
+    paymentMethod: '' as '' | 'BSI' | 'BCA' | 'TUNAI',
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -77,6 +77,12 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
         errs.parentPhone = 'Format nomor WhatsApp tidak valid (contoh: 081234567890)';
       }
       if (!formData.address.trim()) errs.address = 'Alamat domisili lengkap wajib diisi';
+    }
+
+    if (currentStep === 4) {
+      if (!formData.paymentMethod) {
+        errs.paymentMethod = 'Silakan tentukan salah satu metode pembayaran terlebih dahulu.';
+      }
     }
 
     setErrors(errs);
@@ -136,7 +142,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
       birthCertUploaded: formData.birthCertUploaded,
       photoUploaded: formData.photoUploaded,
       registrationFee: PESANTREN_PROFILE.registrationFee,
-      paymentMethod: formData.paymentMethod,
+      paymentMethod: (formData.paymentMethod || 'TUNAI') as 'BSI' | 'BCA' | 'TUNAI',
       testScheduleDate: 'Sabtu, 15 Agustus 2026 (Pukul 08.00 WIB)',
     };
 
@@ -651,14 +657,30 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   {/* Payment Method Selector */}
                   <div>
                     <label className="block text-xs font-semibold text-stone-700 mb-2">
-                      Pilih Metode Pembayaran Pendaftaran:
+                      Pilih Salah Satu Metode Pembayaran Pendaftaran: <span className="text-red-500">*</span>
                     </label>
-                    <div className="space-y-2">
-                      <label
+
+                    {errors.paymentMethod && (
+                      <div className="p-2.5 mb-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700 font-medium flex items-center gap-2">
+                        <span>⚠️</span>
+                        <span>{errors.paymentMethod}</span>
+                      </div>
+                    )}
+
+                    <div className="space-y-2.5">
+                      <div
+                        onClick={() => {
+                          setFormData({ ...formData, paymentMethod: 'BSI' });
+                          if (errors.paymentMethod) {
+                            const newErrs = { ...errors };
+                            delete newErrs.paymentMethod;
+                            setErrors(newErrs);
+                          }
+                        }}
                         className={`p-3.5 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
                           formData.paymentMethod === 'BSI'
-                            ? 'border-emerald-600 bg-emerald-50/60 shadow-sm'
-                            : 'border-stone-200 hover:bg-stone-50'
+                            ? 'border-emerald-600 bg-emerald-50/80 shadow-md ring-2 ring-emerald-600/30'
+                            : 'border-stone-200 hover:bg-stone-50 hover:border-emerald-300'
                         }`}
                       >
                         <div className="flex items-center gap-3">
@@ -666,7 +688,14 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                             type="radio"
                             name="paymentMethod"
                             checked={formData.paymentMethod === 'BSI'}
-                            onChange={() => setFormData({ ...formData, paymentMethod: 'BSI' })}
+                            onChange={() => {
+                              setFormData({ ...formData, paymentMethod: 'BSI' });
+                              if (errors.paymentMethod) {
+                                const newErrs = { ...errors };
+                                delete newErrs.paymentMethod;
+                                setErrors(newErrs);
+                              }
+                            }}
                             className="text-emerald-700 focus:ring-emerald-600"
                           />
                           <div>
@@ -679,13 +708,21 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           </div>
                         </div>
                         <span className="text-xs font-semibold text-emerald-800">Syariah</span>
-                      </label>
+                      </div>
 
-                      <label
+                      <div
+                        onClick={() => {
+                          setFormData({ ...formData, paymentMethod: 'BCA' });
+                          if (errors.paymentMethod) {
+                            const newErrs = { ...errors };
+                            delete newErrs.paymentMethod;
+                            setErrors(newErrs);
+                          }
+                        }}
                         className={`p-3.5 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
                           formData.paymentMethod === 'BCA'
-                            ? 'border-emerald-600 bg-emerald-50/60 shadow-sm'
-                            : 'border-stone-200 hover:bg-stone-50'
+                            ? 'border-emerald-600 bg-emerald-50/80 shadow-md ring-2 ring-emerald-600/30'
+                            : 'border-stone-200 hover:bg-stone-50 hover:border-emerald-300'
                         }`}
                       >
                         <div className="flex items-center gap-3">
@@ -693,7 +730,14 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                             type="radio"
                             name="paymentMethod"
                             checked={formData.paymentMethod === 'BCA'}
-                            onChange={() => setFormData({ ...formData, paymentMethod: 'BCA' })}
+                            onChange={() => {
+                              setFormData({ ...formData, paymentMethod: 'BCA' });
+                              if (errors.paymentMethod) {
+                                const newErrs = { ...errors };
+                                delete newErrs.paymentMethod;
+                                setErrors(newErrs);
+                              }
+                            }}
                             className="text-emerald-700 focus:ring-emerald-600"
                           />
                           <div>
@@ -706,13 +750,21 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           </div>
                         </div>
                         <span className="text-xs font-semibold text-stone-700">Transfer ATM/m-Banking</span>
-                      </label>
+                      </div>
 
-                      <label
+                      <div
+                        onClick={() => {
+                          setFormData({ ...formData, paymentMethod: 'TUNAI' });
+                          if (errors.paymentMethod) {
+                            const newErrs = { ...errors };
+                            delete newErrs.paymentMethod;
+                            setErrors(newErrs);
+                          }
+                        }}
                         className={`p-3.5 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
                           formData.paymentMethod === 'TUNAI'
-                            ? 'border-emerald-600 bg-emerald-50/60 shadow-sm'
-                            : 'border-stone-200 hover:bg-stone-50'
+                            ? 'border-emerald-600 bg-emerald-50/80 shadow-md ring-2 ring-emerald-600/30'
+                            : 'border-stone-200 hover:bg-stone-50 hover:border-emerald-300'
                         }`}
                       >
                         <div className="flex items-center gap-3">
@@ -720,7 +772,14 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                             type="radio"
                             name="paymentMethod"
                             checked={formData.paymentMethod === 'TUNAI'}
-                            onChange={() => setFormData({ ...formData, paymentMethod: 'TUNAI' })}
+                            onChange={() => {
+                              setFormData({ ...formData, paymentMethod: 'TUNAI' });
+                              if (errors.paymentMethod) {
+                                const newErrs = { ...errors };
+                                delete newErrs.paymentMethod;
+                                setErrors(newErrs);
+                              }
+                            }}
                             className="text-emerald-700 focus:ring-emerald-600"
                           />
                           <div>
@@ -733,12 +792,20 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           </div>
                         </div>
                         <span className="text-xs font-semibold text-stone-700">Di Tempat</span>
-                      </label>
+                      </div>
                     </div>
                   </div>
 
                   <div className="p-3 bg-stone-100 rounded-xl text-xs text-stone-600">
-                    Setelah menekan <strong>Kirim Pendaftaran</strong>, sistem akan membuat <strong>Kartu Bukti Pendaftaran Resmi</strong> dengan nomor registrasi unik santri yang siap dicetak dan dikonfirmasikan ke Panitia PSB.
+                    {formData.paymentMethod ? (
+                      <span>
+                        Metode terpilih: <strong>{formData.paymentMethod}</strong>. Silakan klik tombol di bawah untuk menyimpan data ke database dan menerbitkan Kartu Bukti Pendaftaran Resmi.
+                      </span>
+                    ) : (
+                      <span>
+                        Pilih salah satu metode pembayaran di atas untuk mengaktifkan tombol simpan pendaftaran.
+                      </span>
+                    )}
                   </div>
                 </div>
               )}
@@ -770,13 +837,23 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                 ) : (
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="px-6 py-3 bg-amber-400 hover:bg-amber-300 disabled:opacity-70 disabled:cursor-not-allowed text-stone-950 font-bold text-sm rounded-xl transition-all shadow-md flex items-center gap-2 cursor-pointer hover:scale-[1.02]"
+                    disabled={isSubmitting || !formData.paymentMethod}
+                    className={`px-6 py-3 font-bold text-sm rounded-xl transition-all shadow-md flex items-center gap-2 ${
+                      isSubmitting
+                        ? 'bg-amber-300 text-stone-900 opacity-80 cursor-wait'
+                        : !formData.paymentMethod
+                        ? 'bg-stone-200 text-stone-500 cursor-not-allowed border border-stone-300'
+                        : 'bg-amber-400 hover:bg-amber-300 text-stone-950 cursor-pointer hover:scale-[1.02]'
+                    }`}
                   >
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-4 h-4 text-stone-950 animate-spin" />
                         <span>Menyimpan ke Database Google Sheets...</span>
+                      </>
+                    ) : !formData.paymentMethod ? (
+                      <>
+                        <span>Pilih Metode Pembayaran Di Atas</span>
                       </>
                     ) : (
                       <>
