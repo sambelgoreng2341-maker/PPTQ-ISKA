@@ -52,7 +52,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
     photoUploaded: true,
 
     // Step 4: Bayar (kosong secara default, menunggu calon santri memilih)
-    paymentMethod: '' as '' | 'BSI' | 'BCA' | 'TUNAI',
+    paymentMethod: '' as '' | 'BSI' | 'TUNAI',
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -142,7 +142,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
       birthCertUploaded: formData.birthCertUploaded,
       photoUploaded: formData.photoUploaded,
       registrationFee: PESANTREN_PROFILE.registrationFee,
-      paymentMethod: (formData.paymentMethod || 'TUNAI') as 'BSI' | 'BCA' | 'TUNAI',
+      paymentMethod: (formData.paymentMethod || 'TUNAI') as 'BSI' | 'TUNAI',
       testScheduleDate: 'Sabtu, 15 Agustus 2026 (Pukul 08.00 WIB)',
     };
 
@@ -668,6 +668,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     )}
 
                     <div className="space-y-2.5">
+                      {/* Opsi 1: BSI */}
                       <div
                         onClick={() => {
                           setFormData({ ...formData, paymentMethod: 'BSI' });
@@ -702,56 +703,20 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                             <span className="font-semibold text-sm text-stone-900 block">
                               Bank Syariah Indonesia (BSI)
                             </span>
-                            <span className="text-xs font-mono text-stone-600">
-                              No. Rek: 718-469-9149 a.n PPTQ ISKA SUKOHARJO
+                            <span className="text-xs font-mono font-medium text-emerald-900">
+                              No. Rek: 6318520840
+                            </span>
+                            <span className="text-[11px] text-stone-600 block">
+                              a.n. ABDURROHMAN RUSYDAN HALIM
                             </span>
                           </div>
                         </div>
-                        <span className="text-xs font-semibold text-emerald-800">Syariah</span>
+                        <span className="text-xs font-semibold text-emerald-800 bg-emerald-100/60 px-2 py-0.5 rounded">
+                          Transfer Syariah
+                        </span>
                       </div>
 
-                      <div
-                        onClick={() => {
-                          setFormData({ ...formData, paymentMethod: 'BCA' });
-                          if (errors.paymentMethod) {
-                            const newErrs = { ...errors };
-                            delete newErrs.paymentMethod;
-                            setErrors(newErrs);
-                          }
-                        }}
-                        className={`p-3.5 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
-                          formData.paymentMethod === 'BCA'
-                            ? 'border-emerald-600 bg-emerald-50/80 shadow-md ring-2 ring-emerald-600/30'
-                            : 'border-stone-200 hover:bg-stone-50 hover:border-emerald-300'
-                        }`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <input
-                            type="radio"
-                            name="paymentMethod"
-                            checked={formData.paymentMethod === 'BCA'}
-                            onChange={() => {
-                              setFormData({ ...formData, paymentMethod: 'BCA' });
-                              if (errors.paymentMethod) {
-                                const newErrs = { ...errors };
-                                delete newErrs.paymentMethod;
-                                setErrors(newErrs);
-                              }
-                            }}
-                            className="text-emerald-700 focus:ring-emerald-600"
-                          />
-                          <div>
-                            <span className="font-semibold text-sm text-stone-900 block">
-                              Bank Central Asia (BCA)
-                            </span>
-                            <span className="text-xs font-mono text-stone-600">
-                              No. Rek: 015-882-1496 a.n YAYASAN ISKA
-                            </span>
-                          </div>
-                        </div>
-                        <span className="text-xs font-semibold text-stone-700">Transfer ATM/m-Banking</span>
-                      </div>
-
+                      {/* Opsi 2: TUNAI */}
                       <div
                         onClick={() => {
                           setFormData({ ...formData, paymentMethod: 'TUNAI' });
@@ -791,7 +756,9 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                             </span>
                           </div>
                         </div>
-                        <span className="text-xs font-semibold text-stone-700">Di Tempat</span>
+                        <span className="text-xs font-semibold text-stone-700 bg-stone-100 px-2 py-0.5 rounded">
+                          Di Tempat
+                        </span>
                       </div>
                     </div>
                   </div>

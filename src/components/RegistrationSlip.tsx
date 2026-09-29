@@ -155,9 +155,15 @@ export const RegistrationSlip: React.FC<RegistrationSlipProps> = ({ data, onClos
           {/* Biaya Registrasi & Jadwal Seleksi */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-xs">
             <div className="p-2.5 bg-amber-50 rounded-lg border border-amber-200">
-              <span className="text-stone-600 block text-[11px]">Biaya Registrasi:</span>
-              <span className="font-bold text-stone-900 text-sm">Rp 100.000,- ({data.paymentMethod})</span>
-              <span className="block text-[10px] text-stone-500">Konfirmasi via transfer / tunai</span>
+              <span className="text-stone-600 block text-[11px]">Metode Pembayaran:</span>
+              <span className="font-bold text-stone-900 text-sm">
+                {data.paymentMethod === 'BSI' ? 'Transfer Bank BSI' : 'Bayar Tunai di Kampus'} (Rp 100.000,-)
+              </span>
+              <span className="block text-[10px] text-stone-600 font-mono mt-0.5">
+                {data.paymentMethod === 'BSI'
+                  ? 'BSI 6318520840 a.n. ABDURROHMAN RUSYDAN HALIM'
+                  : 'Dibayarkan saat tes seleksi di Kampus Mayang Sukoharjo'}
+              </span>
             </div>
             <div className="p-2.5 bg-emerald-50 rounded-lg border border-emerald-200">
               <span className="text-stone-600 block text-[11px]">Rencana Tanggal Tes:</span>
