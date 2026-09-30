@@ -88,6 +88,16 @@ export async function queryRegistrationFromSheets(query: string): Promise<Regist
     if (!response.ok) return null;
     const resJson = await response.json();
     if (resJson && resJson.success && resJson.data) {
+      if (Array.isArray(resJson.data)) {
+        const keyClean = query.trim().toLowerCase().replace(/[\s-]/g, '');
+        const match = resJson.data.find((item: any) => {
+          const regMatch = String(item.registrationNumber || '').toLowerCase().replace(/[\s-]/g, '').includes(keyClean);
+          const phoneMatch = String(item.parentPhone || '').replace(/[\s-]/g, '').includes(keyClean);
+          const nameMatch = String(item.fullName || '').toLowerCase().includes(keyClean);
+          return regMatch || phoneMatch || nameMatch;
+        });
+        return match ? (match as RegistrationData) : null;
+      }
       return resJson.data as RegistrationData;
     }
   } catch (e) {
