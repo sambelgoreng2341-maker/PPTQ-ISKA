@@ -161,30 +161,27 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = () => {
         */}
         <button
           onClick={handlePrev}
-          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-stone-900/40 hover:bg-stone-900/70 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl group cursor-pointer"
+          className="absolute left-2.5 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-stone-900/45 hover:bg-stone-900/75 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl group cursor-pointer"
           aria-label="Slide sebelumnya"
         >
-          <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 group-hover:-translate-x-0.5 transition-transform" />
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 group-hover:-translate-x-0.5 transition-transform" />
         </button>
 
         <button
           onClick={handleNext}
-          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-stone-900/40 hover:bg-stone-900/70 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl group cursor-pointer"
+          className="absolute right-2.5 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-stone-900/45 hover:bg-stone-900/75 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 shadow-xl group cursor-pointer"
           aria-label="Slide selanjutnya"
         >
-          <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-0.5 transition-transform" />
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 group-hover:translate-x-0.5 transition-transform" />
         </button>
 
         {/* 
           Main Editorial Stage:
-          - Posisi naik di mobile (-translate-y-8 sm:translate-y-0) dan padding samping lega (px-12 sm:px-12)
-            agar teks tidak menabrak tombol panah geser kiri-kanan
-          - Teks masuk dari samping lembut dengan durasi lambat & elegan (animate-hero-*)
-          - Jeda 1 detik berurutan antar baris teks
-          - Teks menghilang dengan halus & elegan sebelum slide berganti (animate-hero-exit)
-          - Center-aligned on mobile, left-aligned on sm+
+          - Padding samping aman di tablet (sm:px-20 md:px-24 lg:px-24) menjamin teks TIDAK PERNAH menabrak tombol panah
+          - Rata kiri di tablet & desktop (sm:text-left sm:items-start)
+          - Tipografi proporsional dan nyaman di tablet (sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl)
         */}
-        <div className="relative z-20 max-w-7xl mx-auto w-full px-12 sm:px-12 lg:px-16 my-auto -translate-y-8 sm:translate-y-0 py-8 sm:py-24">
+        <div className="relative z-20 max-w-7xl mx-auto w-full px-12 sm:px-20 md:px-24 lg:px-24 my-auto -translate-y-8 sm:translate-y-0 py-8 sm:py-20 lg:py-24">
           <div 
             className={`max-w-4xl text-center sm:text-left mx-auto sm:mx-0 flex flex-col items-center sm:items-start ${
               isExiting ? 'animate-hero-exit' : ''
@@ -194,18 +191,18 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = () => {
             
             {/* Step 1: Subtle Sub-headline like "World Class Facility" */}
             <div className="animate-hero-badge mb-2 sm:mb-3 w-full">
-              <span className="text-emerald-300 font-medium text-base sm:text-xl md:text-2xl font-display italic tracking-wide drop-shadow-sm block text-center sm:text-left">
+              <span className="text-emerald-300 font-medium text-base sm:text-lg md:text-xl lg:text-2xl font-display italic tracking-wide drop-shadow-sm block text-center sm:text-left">
                 {currentSlide.badge}
               </span>
             </div>
 
             {/* Step 2: Main Luxury Serif Headline */}
-            <h1 className="animate-hero-title text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display text-white tracking-tight leading-[1.15] sm:leading-[1.1] mb-3 sm:mb-6 [text-wrap:balance] drop-shadow-lg text-center sm:text-left">
+            <h1 className="animate-hero-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-display text-white tracking-tight leading-[1.2] sm:leading-[1.15] lg:leading-[1.1] mb-3 sm:mb-5 lg:mb-6 [text-wrap:balance] drop-shadow-lg text-center sm:text-left">
               {currentSlide.title}
             </h1>
 
             {/* Step 3: Subtitle / Description */}
-            <p className="animate-hero-desc text-stone-200 text-xs sm:text-base md:text-lg font-normal leading-relaxed mb-5 sm:mb-8 max-w-2xl text-stone-200/90 drop-shadow-sm text-center sm:text-left mx-auto sm:mx-0">
+            <p className="animate-hero-desc text-stone-200 text-xs sm:text-sm md:text-base lg:text-lg font-normal leading-relaxed mb-5 sm:mb-7 lg:mb-8 max-w-xl md:max-w-2xl text-stone-200/90 drop-shadow-sm text-center sm:text-left mx-auto sm:mx-0">
               {currentSlide.subtitle}
             </p>
 
@@ -228,8 +225,8 @@ export const HeroSlideshow: React.FC<HeroSlideshowProps> = () => {
           - Center: Scroll Down Indicator
           - Right: Minimalist, slender indicator progress bars
         */}
-        <div className="relative z-20 w-full pt-6 px-6 sm:px-12 lg:px-16">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="relative z-20 w-full pt-6 px-6 sm:px-16 lg:px-24">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4">
             
             {/* Prayer Schedule / Waktu Sholat Pill */}
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-emerald-950/85 hover:bg-emerald-900/90 border border-emerald-700/70 backdrop-blur-md shadow-2xl text-xs text-white transition-all">
