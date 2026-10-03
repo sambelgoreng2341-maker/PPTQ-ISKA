@@ -3,6 +3,20 @@ import { Quote, Award, CheckCircle } from 'lucide-react';
 import { TESTIMONIALS } from '../data/pesantrenData';
 
 export const TestimonialsSection: React.FC = () => {
+  const renderFormattedText = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return (
+          <strong key={i} className="font-semibold text-stone-900 not-italic">
+            {part.slice(2, -2)}
+          </strong>
+        );
+      }
+      return part;
+    });
+  };
+
   return (
     <section className="py-20 bg-stone-50 border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,9 +41,29 @@ export const TestimonialsSection: React.FC = () => {
             >
               <div>
                 <Quote className="w-8 h-8 text-emerald-700/20 mb-3" />
-                <p className="text-stone-700 text-sm leading-relaxed italic mb-6">
-                  "{item.quote}"
-                </p>
+                <div className="text-stone-700 text-sm leading-relaxed mb-6 space-y-2.5">
+                  {item.quote.split('\n\n').map((paragraph, pIdx, arr) => {
+                    const isHeading = paragraph.startsWith('### ');
+                    if (isHeading) {
+                      return (
+                        <h4
+                          key={pIdx}
+                          className="font-display font-bold text-stone-900 text-base leading-snug not-italic border-b border-stone-100 pb-2 mb-2 text-emerald-950"
+                        >
+                          {paragraph.replace(/^###\s+/, '')}
+                        </h4>
+                      );
+                    }
+                    const firstQuoteIdx = arr[0].startsWith('### ') ? 1 : 0;
+                    return (
+                      <p key={pIdx} className="italic text-stone-700">
+                        {pIdx === firstQuoteIdx && '“'}
+                        {renderFormattedText(paragraph)}
+                        {pIdx === arr.length - 1 && '”'}
+                      </p>
+                    );
+                  })}
+                </div>
               </div>
 
               <div className="pt-4 border-t border-stone-100">

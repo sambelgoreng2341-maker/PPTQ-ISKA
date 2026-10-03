@@ -558,9 +558,10 @@ export const TESTIMONIALS = [
     badge: "Wali Santri PPTQ ISKA",
   },
   {
-    quote: "Kurikulum mulazamah yang dipadukan dengan kurikulum formal nasional membekali santri pengetahuan syar'i sekaligus literasi sains dan teknologi yang relevan dengan zaman.",
-    name: "Ust. Ahmad Fauzan, Lc.",
-    role: "Kepala Bidang Tahfizh & Kurikulum",
+    quote:
+      "Pondok kami menjadi tempat bagi para santri untuk belajar, bertumbuh, dan membentuk diri dalam lingkungan yang dekat dengan Al-Qur’an dan penuh pembinaan adab. santri kita juga dibekali pendidikan umum, bahasa Arab dan Inggris, olahraga, serta pemanfaatan teknologi. Semua dipadukan untuk membentuk pribadi yang berilmu, berakhlak, mandiri, dan siap menghadapi masa depan.",
+    name: "Ust. Dr. Wahyudi Umar",
+    role: "Ustadz di IQBS",
     badge: "Dewan Asatidz IQBS Sukoharjo",
   },
 ];
